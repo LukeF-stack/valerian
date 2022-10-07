@@ -27,6 +27,8 @@ func main() {
 
 	tabs.SetTabLocation(container.TabLocationBottom)
 
+	tabs.Resize(fyne.NewSize(100, 100))
+
 	window.SetContent(tabs)
 
 	window.ShowAndRun()
