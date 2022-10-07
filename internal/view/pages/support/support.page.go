@@ -7,13 +7,14 @@ import (
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/widget"
 	"mobile-app/internal/types"
+	"mobile-app/internal/view/context"
 )
 
 type Support struct {
 	types.Page
 }
 
-func (support *Support) Init() {
+func (support *Support) Init(c *context.Context) {
 	support.Title = "Support"
 	textBinding := binding.NewString()
 	textBinding.Set(support.Title)

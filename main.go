@@ -9,7 +9,9 @@ import (
 	"fyne.io/fyne/v2/widget"
 	"mobile-app/internal/router"
 	navigation "mobile-app/internal/view/components/nav"
+	"mobile-app/internal/view/context"
 	"mobile-app/internal/view/pages/home"
+	"mobile-app/internal/view/theme"
 )
 
 func main() {
@@ -17,12 +19,17 @@ func main() {
 	application := app.New()
 	window := application.NewWindow("Fyne App")
 	window.Resize(fyne.NewSize(500, 1000))
-	homepage := new(home.Home)
-	homepage.Init()
+	application.Settings().SetTheme(new(theme.CustomTheme))
 	route := new(router.Router)
 	route.Init()
+
+	ctx := new(context.Context)
+	ctx.Init(&application, route)
+
+	homepage := new(home.Home)
+	homepage.Init(ctx)
 	navBar := new(navigation.Nav)
-	navBar.Init(route)
+	navBar.Init(ctx)
 
 	title := widget.NewLabelWithData(route.Title)
 

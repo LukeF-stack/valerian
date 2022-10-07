@@ -7,13 +7,14 @@ import (
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/widget"
 	"mobile-app/internal/types"
+	"mobile-app/internal/view/context"
 )
 
 type Home struct {
 	types.Page
 }
 
-func (home *Home) Init() {
+func (home *Home) Init(c *context.Context) {
 	home.Title = "Home"
 	textBinding := binding.NewString()
 	textBinding.Set(home.Title)
@@ -21,6 +22,7 @@ func (home *Home) Init() {
 	button := widget.NewButton("Click me!", func() {
 		fmt.Printf("\n clicked")
 		textBinding.Set("Changed")
+		c.NewNotify("INFO!", "Home Page")
 	})
 
 	textContainer := container.New(layout.NewHBoxLayout(), layout.NewSpacer(), text1, layout.NewSpacer())

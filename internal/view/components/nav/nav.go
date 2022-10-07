@@ -4,8 +4,8 @@ import (
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/widget"
-	"mobile-app/internal/router"
 	"mobile-app/internal/types"
+	"mobile-app/internal/view/context"
 	"mobile-app/internal/view/pages/about"
 	"mobile-app/internal/view/pages/home"
 	"mobile-app/internal/view/pages/support"
@@ -15,13 +15,14 @@ type Nav struct {
 	types.Component
 }
 
-func (nav *Nav) Init(route *router.Router) {
+func (nav *Nav) Init(c *context.Context) {
 	aboutPage := new(about.About)
-	aboutPage.Init()
+	aboutPage.Init(c)
 	homePage := new(home.Home)
-	homePage.Init()
+	homePage.Init(c)
 	supportPage := new(support.Support)
-	supportPage.Init()
+	supportPage.Init(c)
+	route := c.Route
 	nav.Content = container.New(
 		layout.NewBorderLayout(
 			layout.NewSpacer(),

@@ -7,13 +7,14 @@ import (
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/widget"
 	"mobile-app/internal/types"
+	"mobile-app/internal/view/context"
 )
 
 type About struct {
 	types.Page
 }
 
-func (about *About) Init() {
+func (about *About) Init(c *context.Context) {
 	about.Title = "About"
 	textBinding := binding.NewString()
 	textBinding.Set(about.Title)
