@@ -6,7 +6,7 @@ import (
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/data/binding"
 	"fyne.io/fyne/v2/layout"
-	"mobile-app/internal/view/pages/home"
+	"mobile-app/internal/types"
 )
 
 type Router struct {
@@ -22,7 +22,7 @@ func (router *Router) Init() {
 	)
 }
 
-func (router *Router) Render(component home.Home) {
+func (router *Router) Render(component types.Page) {
 	fmt.Printf(component.Title)
 	router.Content.RemoveAll()
 	router.Title.Set(component.Title)

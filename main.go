@@ -8,6 +8,7 @@ import (
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/widget"
 	"mobile-app/internal/router"
+	navigation "mobile-app/internal/view/components/nav"
 	"mobile-app/internal/view/pages/home"
 )
 
@@ -20,8 +21,10 @@ func main() {
 	homepage.Init()
 	route := new(router.Router)
 	route.Init()
+	navBar := new(navigation.Nav)
+	navBar.Init(route)
 
-	title := widget.NewLabelWithData(r.Title)
+	title := widget.NewLabelWithData(route.Title)
 
 	titleBox := container.New(layout.NewGridLayoutWithRows(1),
 		container.New(
@@ -31,12 +34,7 @@ func main() {
 
 	nav := container.New(
 		layout.NewPaddedLayout(),
-		container.New(
-			layout.NewGridLayout(3),
-			widget.NewButton("About", nil),
-			widget.NewButton("Home", nil),
-			widget.NewButton("Support", nil),
-		),
+		navBar.Render(),
 	)
 
 	window.SetContent(
@@ -56,7 +54,7 @@ func main() {
 		),
 	)
 
-	route.Render(*homepage)
+	route.Render(homepage.Page)
 
 	window.ShowAndRun()
 }

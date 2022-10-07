@@ -1,4 +1,4 @@
-package home
+package support
 
 import (
 	"fmt"
@@ -9,14 +9,14 @@ import (
 	"mobile-app/internal/types"
 )
 
-type Home struct {
+type Support struct {
 	types.Page
 }
 
-func (home *Home) Init() {
-	home.Title = "Home"
+func (support *Support) Init() {
+	support.Title = "Support"
 	textBinding := binding.NewString()
-	textBinding.Set(home.Title)
+	textBinding.Set(support.Title)
 	text1 := widget.NewLabelWithData(textBinding)
 	button := widget.NewButton("Click me!", func() {
 		fmt.Printf("\n clicked")
@@ -37,5 +37,5 @@ func (home *Home) Init() {
 		),
 		layout.NewSpacer())
 
-	home.Content = content
+	support.Content = content
 }
