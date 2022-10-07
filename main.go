@@ -7,6 +7,7 @@ import (
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/widget"
+	"mobile-app/internal/router"
 	"mobile-app/internal/view/pages/home"
 )
 
@@ -14,29 +15,48 @@ func main() {
 	fmt.Printf("running app!")
 	application := app.New()
 	window := application.NewWindow("Fyne App")
-	window.Resize(fyne.NewSize(1000, 700))
+	window.Resize(fyne.NewSize(500, 1000))
+	homepage := new(home.Home)
+	homepage.Init()
+	route := new(router.Router)
+	route.Init()
 
-	h := new(home.Home)
-	h.Init()
+	title := widget.NewLabelWithData(r.Title)
 
-	subContent := container.New(layout.NewHBoxLayout(), widget.NewButton("test", nil), widget.NewButton("test", nil), widget.NewButton("test", nil))
+	titleBox := container.New(layout.NewGridLayoutWithRows(1),
+		container.New(
+			layout.NewCenterLayout(),
+			title,
+		))
 
-	content := container.New(
-		layout.NewVBoxLayout(),
-		subContent,
+	nav := container.New(
+		layout.NewPaddedLayout(),
+		container.New(
+			layout.NewGridLayout(3),
+			widget.NewButton("About", nil),
+			widget.NewButton("Home", nil),
+			widget.NewButton("Support", nil),
+		),
 	)
 
-	//tabs := container.NewAppTabs(
-	//	container.NewTabItem("Tab 1", widget.NewLabel("Hello")),
-	//	container.NewTabItemWithIcon("Home", theme.HomeIcon(), h.Content),
-	//	container.NewTabItem("Tab 2", widget.NewLabel("World!")),
-	//)
-	//
-	//tabs.SetTabLocation(container.TabLocationBottom)
-	//
-	//tabs.Resize(fyne.NewSize(100, 100))
+	window.SetContent(
+		container.New(
+			layout.NewBorderLayout(
+				titleBox,
+				nav,
+				nil,
+				nil,
+			),
+			titleBox,
+			nav,
+			container.New(
+				layout.NewAdaptiveGridLayout(1),
+				route.Content,
+			),
+		),
+	)
 
-	window.SetContent(content)
+	route.Render(*homepage)
 
 	window.ShowAndRun()
 }

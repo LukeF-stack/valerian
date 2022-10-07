@@ -14,6 +14,7 @@ type Home struct {
 }
 
 func (home *Home) Init() {
+	home.Title = "Home"
 	textBinding := binding.NewString()
 	textBinding.Set("Home")
 	text1 := widget.NewLabelWithData(textBinding)
