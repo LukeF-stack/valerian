@@ -23,9 +23,21 @@ func (nav *Nav) Init(route *router.Router) {
 	supportPage := new(support.Support)
 	supportPage.Init()
 	nav.Content = container.New(
-		layout.NewGridLayout(3),
-		widget.NewButton("About", func() { route.Render(aboutPage.Page) }),
-		widget.NewButton("Home", func() { route.Render(homePage.Page) }),
-		widget.NewButton("Support", func() { route.Render(supportPage.Page) }),
+		layout.NewBorderLayout(
+			layout.NewSpacer(),
+			layout.NewSpacer(),
+			nil,
+			nil,
+		),
+		layout.NewSpacer(),
+		layout.NewSpacer(),
+		container.New(
+			layout.NewGridLayout(5),
+			layout.NewSpacer(),
+			widget.NewButton("About", func() { route.Render(aboutPage.Page) }),
+			widget.NewButton("Home", func() { route.Render(homePage.Page) }),
+			widget.NewButton("Support", func() { route.Render(supportPage.Page) }),
+			layout.NewSpacer(),
+		),
 	)
 }
