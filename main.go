@@ -10,7 +10,7 @@ import (
 	"mobile-app/internal/router"
 	navigation "mobile-app/internal/view/components/nav"
 	"mobile-app/internal/view/context"
-	"mobile-app/internal/view/pages/home"
+	newPage "mobile-app/internal/view/pages/new"
 	"mobile-app/internal/view/theme"
 )
 
@@ -26,8 +26,8 @@ func main() {
 	ctx := new(context.Context)
 	ctx.Init(&application, route)
 
-	homepage := new(home.Home)
-	homepage.Init(ctx)
+	addPage := new(newPage.Add)
+	addPage.Init(ctx)
 	navBar := new(navigation.Nav)
 	navBar.Init(ctx)
 
@@ -61,7 +61,7 @@ func main() {
 		),
 	)
 
-	route.Render(homepage.Page)
+	route.Render(addPage.Page)
 
 	window.ShowAndRun()
 }

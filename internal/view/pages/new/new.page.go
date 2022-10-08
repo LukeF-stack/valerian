@@ -1,4 +1,4 @@
-package about
+package new
 
 import (
 	"fmt"
@@ -10,18 +10,18 @@ import (
 	"mobile-app/internal/view/context"
 )
 
-type About struct {
+type Add struct {
 	types.Page
 }
 
-func (about *About) Init(c *context.Context) {
-	about.Title = "About"
+func (add *Add) Init(c *context.Context) {
+	add.Title = "Home"
 	textBinding := binding.NewString()
-	textBinding.Set(about.Title)
+	textBinding.Set(add.Title)
 	text1 := widget.NewLabelWithData(textBinding)
 	button := widget.NewButton("Click me!", func() {
 		fmt.Printf("\n clicked")
-		textBinding.Set("Changed")
+		c.NewTask("test task")
 	})
 
 	textContainer := container.New(layout.NewHBoxLayout(), layout.NewSpacer(), text1, layout.NewSpacer())
@@ -38,5 +38,5 @@ func (about *About) Init(c *context.Context) {
 		),
 		layout.NewSpacer())
 
-	about.Content = content
+	add.Content = content
 }

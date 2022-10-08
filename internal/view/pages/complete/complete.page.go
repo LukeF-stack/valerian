@@ -1,4 +1,4 @@
-package support
+package complete
 
 import (
 	"fmt"
@@ -10,14 +10,14 @@ import (
 	"mobile-app/internal/view/context"
 )
 
-type Support struct {
+type Complete struct {
 	types.Page
 }
 
-func (support *Support) Init(c *context.Context) {
-	support.Title = "Support"
+func (complete *Complete) Init(c *context.Context) {
+	complete.Title = "Complete Tasks"
 	textBinding := binding.NewString()
-	textBinding.Set(support.Title)
+	textBinding.Set(complete.Title)
 	text1 := widget.NewLabelWithData(textBinding)
 	button := widget.NewButton("Click me!", func() {
 		fmt.Printf("\n clicked")
@@ -38,5 +38,5 @@ func (support *Support) Init(c *context.Context) {
 		),
 		layout.NewSpacer())
 
-	support.Content = content
+	complete.Content = content
 }
