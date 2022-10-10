@@ -17,7 +17,7 @@ func (active *Active) Init(c *context.Context) {
 
 	content := container.NewMax(
 		container.NewVScroll(
-			c.ActiveTasks,
+			c.ActiveTasks.Container,
 		),
 	)
 

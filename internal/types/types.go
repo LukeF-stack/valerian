@@ -20,9 +20,3 @@ type Page struct {
 func (component *Component) Render() *fyne.Container {
 	return component.Content
 }
-
-type Task struct {
-	Name        string
-	Description string
-	Complete    bool
-}

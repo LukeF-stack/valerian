@@ -21,7 +21,7 @@ func (add *Add) Init(c *context.Context) {
 	text1 := widget.NewLabelWithData(textBinding)
 	button := widget.NewButton("Click me!", func() {
 		fmt.Printf("\n clicked")
-		c.NewTask("test task")
+		c.NewTask("test", "this is a test")
 	})
 
 	textContainer := container.New(layout.NewHBoxLayout(), layout.NewSpacer(), text1, layout.NewSpacer())
