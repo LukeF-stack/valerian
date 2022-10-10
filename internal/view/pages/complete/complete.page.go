@@ -22,7 +22,7 @@ func (complete *Complete) Init(c *context.Context) {
 	button := widget.NewButton("Click me!", func() {
 		fmt.Printf("\n clicked")
 		for _, task := range c.ActiveTasks.List {
-			task.Name.Set("changed")
+			c.ActiveTasks.Container.Remove(task.Container)
 		}
 	})
 
